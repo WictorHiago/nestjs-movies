@@ -10,9 +10,10 @@ export const databaseProviders = [
         port: 5432,
         username: 'postgres',
         password: 'root',
-        database: 'movie_catalago',
+        database: 'catalago_movie',
         entities: [__dirname + '/../**/*.entity{.ts,.js}'],
         synchronize: true,
+        migrations: ['src/database/migrations/*{.ts,.js}'],
       });
 
       return dataSource.initialize();
