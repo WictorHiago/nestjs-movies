@@ -12,7 +12,9 @@ import {
 import { MovieService } from '../services/movie.service';
 import { MovieDto } from '../dto/movieDto';
 import { AuthGuard } from 'src/auth/auth.guard';
+import { ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
 
+@ApiBearerAuth()
 @UseGuards(AuthGuard)
 @Controller('movie')
 export class MovieController {
@@ -30,6 +32,9 @@ export class MovieController {
     }
   }
 
+  @ApiOperation({
+    summary: 'List all movies',
+  })
   @Get('list')
   async list() {
     try {
@@ -39,6 +44,10 @@ export class MovieController {
       throw new HttpException('Something went wrong', 400);
     }
   }
+
+  @ApiOperation({
+    summary: 'Find movie by id',
+  })
   @Get(':id')
   async findOne(@Param('id') id: number) {
     try {
@@ -48,6 +57,9 @@ export class MovieController {
     }
   }
 
+  @ApiOperation({
+    summary: 'Update movie',
+  })
   @Put(':id')
   async update(@Param('id') id: number, @Body() movie: MovieDto) {
     try {
@@ -61,6 +73,9 @@ export class MovieController {
     }
   }
 
+  @ApiOperation({
+    summary: 'Delete movie',
+  })
   @Delete(':id')
   async remove(@Param('id') id: number) {
     try {

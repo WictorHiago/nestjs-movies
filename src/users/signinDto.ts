@@ -1,8 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
-export class MovieDto {
+export class SigninDto {
   @ApiProperty()
-  name: string;
+  username: string;
 
   @ApiProperty()
-  description: string;
+  password: string;
 }

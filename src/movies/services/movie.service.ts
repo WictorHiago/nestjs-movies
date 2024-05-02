@@ -1,6 +1,7 @@
 import { HttpException, Inject, Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { Movie } from '../entities/movie.entity';
+import { MovieDto } from '../dto/movieDto';
 
 @Injectable()
 export class MovieService {
@@ -9,7 +10,7 @@ export class MovieService {
     private readonly movieRepository: Repository<Movie>,
   ) {}
 
-  async create(movie: Movie): Promise<Movie> {
+  async create(movie: MovieDto): Promise<Movie> {
     return this.movieRepository.save(movie);
   }
 
@@ -23,7 +24,7 @@ export class MovieService {
     return this.movieRepository.find();
   }
 
-  async update(id: number, movie: Movie): Promise<Movie> {
+  async update(id: number, movie: MovieDto): Promise<Movie> {
     const movieExist = await this.movieRepository.findOneBy({ id });
 
     if (!movieExist) throw new HttpException('Movie not found', 404);
