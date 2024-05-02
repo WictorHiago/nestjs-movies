@@ -12,8 +12,8 @@ export const databaseProviders = [
         password: 'root',
         database: 'catalago_movie',
         entities: [__dirname + '/../**/*.entity{.ts,.js}'],
-        synchronize: true,
-        migrations: ['src/database/migrations/*{.ts,.js}'],
+        synchronize: false,
+        migrations: [__dirname + '../migrations/*{.ts,.js}'],
       });
 
       return dataSource.initialize();

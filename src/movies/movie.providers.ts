@@ -1,5 +1,5 @@
 import { DataSource } from 'typeorm';
-import { Movie } from './movie.entity';
+import { Movie } from './entities/movie.entity';
 
 export const movieProviders = [
   {
