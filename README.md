@@ -26,6 +26,27 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
+Before trying to start the nestjs server, make sure you have installed Postgres and Redis.
+
+Because I no longer have Google Cloud or AWS credits. I chose to run the Postgres and Redis database services in a Docker container.
+
+These commands below create a container for each service:
+
+```
+POSTGRES ON DOCKER
+$ docker run --name meu_banco -d -p 5432:5432 -e POSTGRES_PASSWORD=postgres -v postgres-data:/var/lib/postgresql/data postgres:12
+
+REDIS ON DOCKER - redis client http://localhost:8001
+$ docker run -d --name redis-stack -p 6379:6379 -p 8001:8001 redis/redis-stack:latest
+
+
+inside the src/database directory
+
+adjust the redis host and port if necessary
+
+After that, just continue with the next steps.
+```
+
 ## Installation
 
 ```bash
