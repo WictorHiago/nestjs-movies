@@ -1,5 +1,6 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
+import { PublishService } from 'src/redis/publish.service';
 import { UsersService } from 'src/users/services/users.service';
 
 @Injectable()
@@ -19,8 +20,12 @@ export class AuthService {
 
     const payload = { sub: user.userId, username: user.username };
 
-    return {
-      access_token: await this.jwtService.signAsync(payload),
-    };
+    const token = await this.jwtService.signAsync(payload);
+
+    // save token in cache
+    const redis = new PublishService();
+    redis.publish(user.username, token);
+
+    return { access_token: token };
   }
 }

@@ -9,7 +9,6 @@ import { MovieService } from './movies/services/movie.service';
 import { databaseProviders } from './database/database.providers';
 import { movieProviders } from './movies/movie.providers';
 import { MovieController } from './movies/controllers/movie.controller';
-
 @Module({
   imports: [AuthModule, UsersModule, DatabaseModule, MoviesModule],
   controllers: [AppController, MovieController],

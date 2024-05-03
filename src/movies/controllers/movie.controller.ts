@@ -22,14 +22,7 @@ export class MovieController {
 
   @Post('save')
   async save(@Body() movie: MovieDto) {
-    try {
-      if (!movie.name || !movie.description)
-        throw new HttpException('Movie name and description are required', 400);
-
-      return await this.movieService.create(movie);
-    } catch (error) {
-      throw new HttpException(error.message, 400);
-    }
+    return await this.movieService.create(movie);
   }
 
   @ApiOperation({
@@ -57,9 +50,6 @@ export class MovieController {
     }
   }
 
-  @ApiOperation({
-    summary: 'Update movie',
-  })
   @Put(':id')
   async update(@Param('id') id: number, @Body() movie: MovieDto) {
     try {
@@ -73,9 +63,6 @@ export class MovieController {
     }
   }
 
-  @ApiOperation({
-    summary: 'Delete movie',
-  })
   @Delete(':id')
   async remove(@Param('id') id: number) {
     try {
